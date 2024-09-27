@@ -1,116 +1,106 @@
-# Simulating a Simple Banking System
+# Adventure Seekers: Treasure Hunt with Java
 
-Creating a realistic simulation of a banking system can be an excellent way to explore various Java programming concepts. In this task, you will implement a basic banking system where users can deposit, withdraw, and check balances. You will deepen your understanding of Java essentials such as `boolean` expressions and operators, `while` and `for` loops, function overloading, and how to experiment with your program using JShell.
+Java is a gem of a programming language that equips us with powerful control structures like `boolean` expressions, loops, and method overloading to break down complex problems. Let's embark on a thrilling treasure hunt by crafting a Java quest map where you will use these concepts to navigate your way through.
 
 ### 📝 Preparation
 
-- Review the [lecture slides](https://docs.google.com/presentation/d/1kcsmcuBBu4Jr3O_r6eNP6IFrP6DEITDWeRS5_7rtV30/edit#slide=id.p)
-- Explore this week's topics:
-  - [Boolean Expressions and Operators](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/function/package-summary.html)
-  - [While and For Loops](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/while.html)
-  - [Function Overloading](https://docs.oracle.com/javase/tutorial/java/javaOO/methods.html)
-  - [JShell Basics](https://docs.oracle.com/javase/9/jshell/introduction-jshell.htm)
+- Brush up on basic boolean expressions and their usage in Java.
+- Explore the [Java Tutorials on Control Flow Statements](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/flow.html).
+- Experiment with JShell to practice Java snippets rapidly.
 
 ### ✅ Learning Goals
 
-This week's learning goals include:
+This task will help you achieve:
 
-- `boolean` expressions and operators
-- `while` loops
-- `for` loops
-- Using JShell to try your Java program
-- Function overloading
+* Grasping `boolean` expressions and logical operators.
+* Mastering `while` and `for` loops.
+* Utilizing JShell for Java exploration.
+* Understanding and applying function overloading.
 
 ### 🚨 Troubleshooting Guide
 
-If you encounter issues while working through this task, follow these steps:
+If you encounter any hurdles:
 
-1. Check this week's [discussion board](https://gits-15.sys.kth.se/inda-24/help/issues) to see if others have similar problems.
-2. Post a question yourself by creating a [New Issue](https://gits-15.sys.kth.se/inda-24/help/issues/new). Be sure to include a detailed description beginning with "Task _x_: _summary of problem here_".
-3. Don't hesitate to ask a TA during the [weekly lab](https://queue.csc.kth.se/Queue/INDA). Verify your schedule for the next lab availability.
+1. Refer to the [course discussion forum](https://example.com/forums) for previously addressed issues.
+2. If unresolved, create a [New Issue](https://example.com/issues/new) titled "Treasure Hunt: [Brief Problem Description]".
+3. Consult a TA during the [weekly support session](https://example.com/support).
 
-Remember, collaboration with classmates is great, but submission must reflect your understanding. Avoid submitting AI-generated solutions.
+Collaborate with peers for discussion but don't share your solutions. Use any AI tools for explanation — the solution must be your own, and you should be able to elaborate on it during tests.
 
-### 🏛 Assignment
+### 🏛 Assignment: Treasure Hunt
 
-Before starting this task, you need to be familiar with writing methods, understanding loops, and stopping conditions using boolean expressions. This task will guide you through creating a basic banking system simulation, which involves several important Java concepts.
+Navigate the challenges ahead using logical constructs and loops. Each task leads you closer to the treasure, honing your Java skills with each step.
 
-<details>
-<summary> 📚 Boolean Expressions and Operators </summary>
-A `boolean` expression evaluates to either `true` or `false`. You will use these expressions extensively in controlling the flow of your banking system as conditions for deposits and withdrawals. In Java, `&&` is for "and", `||` is for "or", and `!` is for "not".
+#### Exercise 1: Boolean Expressions as Keys
 
-Remember:
-```java
-boolean isValidTransaction = false;
-boolean isFundSufficient = true;
-boolean isTransactionApproved = isValidTransaction || isFundSufficient;
-```
-</details>
-
-#### Exercise 1: Create the Banking System
-
-1. **Create a Java Class**: Begin this exercise by creating a `BankAccount.java` file in your project directory.
+In the `src` folder, create a new file `TreasureHunt.java`. Begin with unlocking ancient doors using boolean expressions by implementing:
 
 ```java
-public class BankAccount {
-    // Your code here
-}
+public boolean tryUnlockDoor(int hintCode)
 ```
 
-2. **Add Fields**: Use private fields to hold the account information such as account balance, account holder's name, and account number.
+- Use boolean logic to determine if the hint code matches the ancient key codes. Suppose valid hint codes are numbers that are multiples of 3 or 7 and not both.
 
-3. **Constructor Overloading**:
+#### Exercise 2: Navigating the Cave
 
-   - Implement two constructors: `public BankAccount(String accountHolder, int accountNumber)` and `public BankAccount(String accountHolder, int accountNumber, double initialBalance)`.
-   - Use the constructor with fewer parameters to initialize the account balance to zero.
-
-   > **Note**: This is where you will introduce function overloading.
-
-#### Exercise 2: Handling Deposits, Withdrawals, and Balances
-
-4. **Boolean Methods**: Implement the following methods:
-
-   - `boolean deposit(double amount)`: Adds funds to the account. Returns `true` if successful, `false` otherwise.
-   - `boolean withdraw(double amount)`: Deducts funds from the account. Ensure the account does not go negative; return `true` if successful, `false` otherwise. Use boolean expressions to handle this validation.
-
-5. **Display Balance**: Add a method `public double getBalance()` to return the current balance.
-
-#### Exercise 3: Using Loops
-
-6. **Log Transactions with Loops**:
-   
-   - Create a private `ArrayList<String>` to store transaction logs.
-   - Use a `for` loop to display all transactions.
+You need a `while` loop to continuously dodge traps until finding the treasure. Add:
 
 ```java
-public void showTransactionHistory() {
-    for (String transaction : transactions) {
-        System.out.println(transaction);
-    }
-}
+public void dodgeTraps()
 ```
 
-7. **Balancing with `while` loop**: Implement a method `public void reachGoalBalance(double goal)` that uses a `while` loop to simulate adding a fixed amount, say $50, to the account until the balance reaches the specified goal.
+- Use a `while` loop to count your steps until you reach step 5000 where the treasure is guarded. Use a `boolean` expression to avoid traps at every 100th step.
 
-#### Exercise 4: Validating with JShell
+#### Exercise 3: Treasure Map with For-Loops
 
-8. **Testing in JShell**:
-   
-   - Open your terminal, navigate to your Java file location, and run:
+Put together a treasure map using a `for` loop. Implement:
+
+```java
+public void printTreasureMap(int size)
+```
+
+- The map is a square grid of `*` characters with specified `size`.
+- Use a `for` loop to print rows and columns, forming a complete grid.
+
+#### Exercise 4: Function Overloading for Enhancing Treasure Hunt
+
+Implement two overloaded methods for calculating rewards:
+
+```java
+public int calculateReward(int goldCoins)
+public double calculateReward(int goldCoins, double multiplier)
+```
+
+- The first method returns the gold coins equivalent doubled as the reward.
+- The second method uses a `multiplier` to adjust the reward, demonstrating function overloading.
+
+#### Exercise 5: Testing with JShell
+
+Use JShell to test each small piece of your solution as you develop it. Type the following in your command line:
 
 ```bash
-jshell BankAccount.java
+jshell TreasureHunt.java
 ```
 
-   - Use JShell to attempt some deposits and withdrawals. Experiment with depositing negative amounts or over-withdrawing to test behavior.
+Verify individual methods like:
 
 ```java
-BankAccount myAccount = new BankAccount("Alice", 101);
-myAccount.deposit(100);
-myAccount.withdraw(150);
-myAccount.getBalance();
+new TreasureHunt().tryUnlockDoor(21);
+new TreasureHunt().printTreasureMap(5);
 ```
 
-9. **Optional Challenge**: Implement an overloaded method `reachGoalBalance(double goal, double increment)` that allows the user to specify how much they will deposit in each loop iteration. Use a `while` loop to track this manually.
+Practice constructing and interacting with code snippets swiftly using JShell!
 
-By the end of this task, you should have a comprehensive understanding of designing small simulations using Java, implementing loops, handling method overloading, and running isolated tests in JShell. Good luck, and happy coding!
+#### Exercise 6: Creating Time-Limited Tasks with Loops
+
+Finally, create advanced logic using loops in:
+
+```java
+public void trapCountdown(int seconds)
+```
+
+- Use a `for` or `while` loop to implement a countdown from the specified number of `seconds`, printing a warning every time it decrements. Introduce suspense by awaiting graduation with a logical expression every three ticks.
+
+---
+
+Embarking on this treasure hunt not only sharpens your Java skills but also paves the way for visualizing problems and solutions using code effectively. Enjoy the adventure, and may the Java Elements be with you! 🏴‍☠️💎
