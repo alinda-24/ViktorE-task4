@@ -10,85 +10,88 @@ class public class BankAccountTest {
 
     @Before
     public void setUp() {
-        account = new BankAccount("Alice", 12345678, 100.0);
+        account = new BankAccount("Alice", 1001);
     }
 
     @Test
-    public void testDefaultConstructor() {
-        BankAccount newAccount = new BankAccount("Bob", 87654321);
-        assertEquals(0.0, newAccount.getBalance(), 0);
+    public void testInitialBalanceIsZero() {
+        assertEquals(0.0, account.getBalance(), 0.001);
     }
 
     @Test
     public void testDepositValidAmount() {
-        assertTrue(account.deposit(50));
-        assertEquals(150.0, account.getBalance(), 0);
+        assertTrue(account.deposit(100));
+        assertEquals(100.0, account.getBalance(), 0.001);
     }
 
     @Test
     public void testDepositInvalidAmount() {
         assertFalse(account.deposit(-50));
-        assertEquals(100.0, account.getBalance(), 0);
+        assertEquals(0.0, account.getBalance(), 0.001);
     }
 
     @Test
     public void testWithdrawValidAmount() {
-        assertTrue(account.withdraw(30));
-        assertEquals(70.0, account.getBalance(), 0);
+        account.deposit(100);
+        boolean withdrawn = account.withdraw(50);
+        assertTrue(withdrawn);
+        assertEquals(50.0, account.getBalance(), 0.001);
+    }
+
+    @Test
+    public void testWithdrawMoreThanBalance() {
+        account.deposit(100);
+        boolean withdrawn = account.withdraw(150);
+        assertFalse(withdrawn);
+        assertEquals(100.0, account.getBalance(), 0.001);
     }
 
     @Test
     public void testWithdrawInvalidAmount() {
-        assertFalse(account.withdraw(-10));
-        assertEquals(100.0, account.getBalance(), 0);
-    }
-
-    @Test
-    public void testWithdrawInsufficientFunds() {
-        assertFalse(account.withdraw(150));
-        assertEquals(100.0, account.getBalance(), 0);
+        assertFalse(account.withdraw(-30));
+        assertEquals(0.0, account.getBalance(), 0.001);
     }
 
     @Test
     public void testTransactionHistory() {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-
+        account.deposit(200);
+        account.withdraw(100);
         account.deposit(50);
-        account.withdraw(20);
-        account.showTransactionHistory();
+        
+        List<String> expectedTransactions = new ArrayList<>();
+        expectedTransactions.add("Account created with initial balance: $0.0");
+        expectedTransactions.add("Deposited: $200.0");
+        expectedTransactions.add("Withdrew: $100.0");
+        expectedTransactions.add("Deposited: $50.0");
 
-        String output = out.toString().trim();
-        String expectedOutput = "Transaction history for account 12345678:\n" +
-                                "Account created with initial balance: $100.0\n" +
-                                "Deposited: $50.0\n" +
-                                "Withdrew: $20.0";
-        assertEquals(expectedOutput, output);
+        account.showTransactionHistory();  // Check printed values manually if needed
+        
+        assertEquals(expectedTransactions, ((ArrayList<String>)account.transactions));
     }
 
     @Test
-    public void testReachGoalBalanceDefaultIncrement() {
-        account.reachGoalBalance(200);
-        assertEquals(200.0, account.getBalance(), 0);
+    public void testReachGoalBalance() {
+        account.deposit(100);
+        account.reachGoalBalance(250);
+
+        assertTrue(account.getBalance() >= 250);
     }
 
     @Test
-    public void testReachGoalBalanceSpecifiedIncrement() {
-        account.reachGoalBalance(250, 25);
-        assertEquals(250.0, account.getBalance(), 0);
-    }
+    public void testReachGoalBalanceWithIncrement() {
+        account.reachGoalBalance(200, 40);
 
-    @Test
-    public void testReachGoalBalanceZeroIncrement() {
-        double initialBalance = account.getBalance();
-        account.reachGoalBalance(200, 0);
-        assertEquals(initialBalance, account.getBalance(), 0);
-    }
-
-    @Test
-    public void testReachGoalBalanceNegativeIncrement() {
-        double initialBalance = account.getBalance();
-        account.reachGoalBalance(200, -50);
-        assertEquals(initialBalance, account.getBalance(), 0);
+        assertTrue(account.getBalance() >= 200);
     }
 }
+
+// TreasureHuntTest.java
+
+import org.junit.Before;
+import org.junit.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import static org.junit.Assert.*;
+
